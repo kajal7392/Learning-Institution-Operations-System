@@ -8,7 +8,7 @@ Features:
 3. Leave Management
 4. Database Connectivity
 5. Examination Department
-6. Fee Details
+6. Fee Details and Fee Submission
 7. Notepad and Calculator
 8. Department and Course Information
 
