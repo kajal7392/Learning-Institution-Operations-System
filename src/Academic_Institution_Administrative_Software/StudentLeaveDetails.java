@@ -1,36 +1,37 @@
 package Academic_Institution_Administrative_Software;
 
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-import net.proteanit.sql.DbUtils;
 
-public class TeacherDetails extends JFrame implements ActionListener {
+public class StudentLeaveDetails extends JFrame implements ActionListener {
 
-    Choice cEmpID;
+    Choice crollno;
     JTable table;
     JButton search, print, update,add,cancel;
 
-    TeacherDetails(){
+    StudentLeaveDetails(){
 
         getContentPane().setBackground(Color.white);
         setLayout(null);
 
-        JLabel heading = new JLabel("Search by Employee ID ");
+        JLabel heading = new JLabel("Search by Roll Number");
         heading.setBounds(20,20,150,20);
         add(heading);
 
-        cEmpID = new Choice();
-        cEmpID.setBounds(180,20,150,20);
-        add(cEmpID);
+        crollno = new Choice();
+        crollno.setBounds(180,20,150,20);
+        add(crollno);
 
         try{
             ConnectionJDBC c = new ConnectionJDBC();
-            ResultSet rs = c.s.executeQuery("SELECT * FROM teacher");
+            ResultSet rs = c.s.executeQuery("SELECT * FROM student");
             while (rs.next()){
-                cEmpID.add(rs.getString("empid"));
+                crollno.add(rs.getString("rollno"));
             }
 
         }catch (Exception e){
@@ -41,7 +42,7 @@ public class TeacherDetails extends JFrame implements ActionListener {
 
         try{
             ConnectionJDBC c = new ConnectionJDBC();
-            ResultSet rs = c.s.executeQuery("SELECT * FROM teacher");
+            ResultSet rs = c.s.executeQuery("SELECT * FROM Studentleave");
             table.setModel(DbUtils.resultSetToTableModel(rs));
 
         }catch (Exception e){
@@ -62,18 +63,9 @@ public class TeacherDetails extends JFrame implements ActionListener {
         print.addActionListener(this);
         add(print);
 
-        add = new JButton("Add");
-        add.setBounds(220,70,80,20);
-        add.addActionListener(this);
-        add(add);
-
-        update = new JButton("Update");
-        update.setBounds(320,70,80,20);
-        update.addActionListener(this);
-        add(update);
 
         cancel = new JButton("Cancel");
-        cancel.setBounds(420,70,80,20);
+        cancel.setBounds(220,70,80,20);
         cancel.addActionListener(this);
         add(cancel);
 
@@ -88,7 +80,7 @@ public class TeacherDetails extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae){
         if (ae.getSource() == search){
-            String query = "SELECT * FROM teacher WHERE empid = '"+cEmpID.getSelectedItem()+"'";
+            String query = "SELECT * FROM studentleave WHERE rollno = '"+crollno.getSelectedItem()+"'";
             try{
                 ConnectionJDBC c = new ConnectionJDBC();
                 ResultSet rs = c.s.executeQuery(query);
@@ -103,9 +95,12 @@ public class TeacherDetails extends JFrame implements ActionListener {
             }catch (Exception e){
                 e.printStackTrace();
             }
-        } else if (ae.getSource()==update) {
-            setVisible(false);
-            new UpdateTeacher();
+        } else if (ae.getSource()==print){
+            try{
+                table.print();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
         }else {
             setVisible(false);
@@ -114,6 +109,6 @@ public class TeacherDetails extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new TeacherDetails();
+        new StudentLeaveDetails();
     }
 }

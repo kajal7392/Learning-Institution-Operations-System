@@ -13,11 +13,14 @@ public class ConnectionJDBC  {
     ConnectionJDBC() {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/AcademicAdminDB","root","Divyansh#213042");
+            // Update the JDBC URL, username, and password
+            String url = "jdbc:mysql://localhost:3306/AcademicAdmin";
+            String username = "root"; 
+            String password = "Admin";
+            c = DriverManager.getConnection(url, username, password);
             s = c.createStatement();
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 }

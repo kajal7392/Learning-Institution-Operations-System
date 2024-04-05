@@ -137,7 +137,7 @@ public class AddStudent extends JFrame implements ActionListener {
         branch.setFont(new Font("SARIF",Font.BOLD,20));
         add(branch);
 
-        String Branch[] = {"CSE","CST","CSE-AI/ML","B.Tech (LEET)","CSE-DS","ME","ETCE","D.Pharma"};
+        String Branch[] = {"none","CSE","CST","CSE-AI/ML","B.Tech (LEET)","CSE-DS","ME","ETCE","D.Pharma"};
         cbranch = new JComboBox(Branch);
         cbranch.setBounds(600,400,150,30);
         cbranch.setBackground(Color.white);
@@ -158,14 +158,6 @@ public class AddStudent extends JFrame implements ActionListener {
         cancel.addActionListener(this);
         cancel.setFont(new Font("SARIF",Font.BOLD,15));
         add(cancel);
-
-
-
-
-
-
-
-
 
         setVisible(true);
 
