@@ -1,8 +1,8 @@
 "Academic Institution Administrative Software"
 
 This Academic Institution Administrative Software is a Java Swing-based application designed to manage the administrative tasks of an educational institution. It provides functionalities for managing faculty, students, examination details, fee structures, leave applications, and more.
-Features:
 
+Features:
 1. Admin Login
 2. Manage Faculty and Student Information
 3. Leave Management
